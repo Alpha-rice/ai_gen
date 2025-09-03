@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simple One Page</title>
+  <meta name="description" content="Lightweight single-page site (1 HTML / 1 CSS / 1 JS)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">メインへスキップ</a>
+
+  <header class="site-header" role="banner">
+    <div class="container">
+      <div class="brand">SimpleSite</div>
+      <nav id="primary-nav" class="nav" aria-label="メインナビゲーション" data-open="false">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#works">Works</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="actions">
+        <button id="theme-toggle" class="icon-btn" aria-pressed="false" aria-label="テーマ切替">🌓</button>
+        <button id="menu-toggle" class="icon-btn" aria-expanded="false" aria-controls="primary-nav" aria-label="メニュー">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="site-main" role="main">
+    <section id="hero" class="hero container">
+      <h1>軽量・即デプロイの1ページ</h1>
+      <p>依存ゼロの静的サイト。最小ファイルで、素早く伝える。</p>
+      <p>
+        <a class="cta" href="#contact">連絡する</a>
+      </p>
+    </section>
+
+    <section id="about" class="section container">
+      <h2>About</h2>
+      <p>このテンプレートは、名刺代わりの情報やリンク集を1ページにまとめる用途を想定している。</p>
+    </section>
+
+    <section id="features" class="section container">
+      <h2>Features</h2>
+      <div class="grid cards">
+        <article class="card">
+          <h3>シンプル</h3>
+          <p>1 HTML / 1 CSS / 1 JS のみで完結。</p>
+        </article>
+        <article class="card">
+          <h3>テーマ切替</h3>
+          <p>OS設定に追従＋手動切替の両対応。</p>
+        </article>
+        <article class="card">
+          <h3>モバイル対応</h3>
+          <p>ナビ開閉と読みやすいレイアウト。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="works" class="section container">
+      <h2>Works</h2>
+      <div class="grid works">
+        <article class="work">
+          <h3>プロジェクトA</h3>
+          <p>短い説明文をここに。</p>
+        </article>
+        <article class="work">
+          <h3>プロジェクトB</h3>
+          <p>短い説明文をここに。</p>
+        </article>
+        <article class="work">
+          <h3>プロジェクトC</h3>
+          <p>短い説明文をここに。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="section container">
+      <h2>Contact</h2>
+      <ul class="links">
+        <li><a href="mailto:hello@example.com">メール</a></li>
+        <li><a href="https://github.com/yourname" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://discord.com/users/000000000000000000" target="_blank" rel="noopener">Discord</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>© 2025 SimpleSite</small>
+    </div>
+  </footer>
+
+  <script defer src="assets/js/app.js"></script>
+</body>
+</html>
