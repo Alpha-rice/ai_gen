@@ -3,10 +3,51 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Simple One Page</title>
-  <meta name="description" content="Lightweight single-page site (1 HTML / 1 CSS / 1 JS)" />
-  <meta name="color-scheme" content="light dark" />
+  <title>Simple One Page — 拡張版</title>
+  <meta name="description" content="軽量・セマンティック・アクセシブルな1ページサイト。サービス/料金/実績/FAQ/連絡先などを網羅。" />
+  <meta name="theme-color" content="#0a84ff" />
+
+  <!-- 共有時に使うメタ（必要に応じて内容を編集） -->
+  <meta property="og:title" content="Simple One Page — 拡張版" />
+  <meta property="og:description" content="軽量・セマンティック・アクセシブルな1ページサイト。サービス/料金/実績/FAQ/連絡先などを網羅。" />
+  <meta property="og:type" content="website" />
+
   <link rel="stylesheet" href="assets/css/style.css" />
+  <script defer src="assets/js/app.js"></script>
+
+  <!-- FAQ 構造化データ（JSON-LD） -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "このテンプレートは商用利用できますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "はい。MITライセンス相当を想定しています。著作権表記をフッターに残す形での再利用を推奨します。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "問い合わせの推奨方法は？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "メールまたはGitHub/Discordのプロフィールリンクからご連絡ください。返信の目安は1〜3営業日です。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "画像やブログの追加は可能ですか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "はい。WorksやBlogセクションにarticle/figure要素を追加し、imgにはloading=\"lazy\"を付けてください。"
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main">メインへスキップ</a>
@@ -17,8 +58,11 @@
       <nav id="primary-nav" class="nav" aria-label="メインナビゲーション" data-open="false">
         <ul>
           <li><a href="#about">About</a></li>
-          <li><a href="#features">Features</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#pricing">Pricing</a></li>
           <li><a href="#works">Works</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#faq">FAQ</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
@@ -30,71 +74,207 @@
   </header>
 
   <main id="main" class="site-main" role="main">
-    <section id="hero" class="hero container">
-      <h1>軽量・即デプロイの1ページ</h1>
-      <p>依存ゼロの静的サイト。最小ファイルで、素早く伝える。</p>
+    <!-- Hero -->
+    <section id="hero" class="hero container" aria-labelledby="hero-title">
+      <h1 id="hero-title">軽量・即デプロイの1ページ</h1>
+      <p>ビルド不要・依存ゼロの静的テンプレートに、サービス/料金/実績/FAQ/連絡先までを1画面で集約。</p>
       <p>
         <a class="cta" href="#contact">連絡する</a>
+        <a class="btn-secondary" href="#services">できること</a>
       </p>
     </section>
 
-    <section id="about" class="section container">
-      <h2>About</h2>
-      <p>このテンプレートは、名刺代わりの情報やリンク集を1ページにまとめる用途を想定している。</p>
+    <!-- About -->
+    <section id="about" class="section container" aria-labelledby="about-title">
+      <h2 id="about-title">About</h2>
+      <p>このテンプレートは、名刺代わりの情報整理や小規模プロジェクトの紹介に最適化されている。</p>
+      <div class="grid">
+        <article>
+          <h3>方針</h3>
+          <ul>
+            <li>セマンティックなHTMLと明瞭な見出し構造</li>
+            <li>最小のCSS/JSで高速表示</li>
+            <li>拡張しやすいセクション設計</li>
+          </ul>
+        </article>
+        <aside>
+          <h3>ハイライト</h3>
+          <p>ダーク/ライト切替、モバイル/PC分離、二色＋セカンダリの配色設計。</p>
+        </aside>
+      </div>
     </section>
 
-    <section id="features" class="section container">
-      <h2>Features</h2>
+    <!-- Services -->
+    <section id="services" class="section container" aria-labelledby="services-title">
+      <h2 id="services-title">Services</h2>
       <div class="grid cards">
         <article class="card">
-          <h3>シンプル</h3>
-          <p>1 HTML / 1 CSS / 1 JS のみで完結。</p>
+          <h3>サイト初期構築</h3>
+          <p>静的ページ構築、ドメイン/DNS設定、GitHub Pages/Cloudflare Pages公開。</p>
+          <p><a class="btn-secondary" href="#contact">相談する</a></p>
         </article>
         <article class="card">
-          <h3>テーマ切替</h3>
-          <p>OS設定に追従＋手動切替の両対応。</p>
+          <h3>運用サポート</h3>
+          <p>文言更新、画像最適化、軽微なレイアウト調整、分析導入の支援。</p>
+          <p><a class="btn-secondary" href="#contact">相談する</a></p>
         </article>
         <article class="card">
-          <h3>モバイル対応</h3>
-          <p>ナビ開閉と読みやすいレイアウト。</p>
+          <h3>拡張実装</h3>
+          <p>OG画像自動生成、フォーム外部連携、ブログ一覧・検索などの拡張。</p>
+          <p><a class="btn-secondary" href="#contact">相談する</a></p>
         </article>
       </div>
     </section>
 
-    <section id="works" class="section container">
-      <h2>Works</h2>
+    <!-- Pricing -->
+    <section id="pricing" class="section container" aria-labelledby="pricing-title">
+      <h2 id="pricing-title">Pricing</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Starter</h3>
+          <p>単一ページの文言/リンク差し替え、公開までの導線確認。</p>
+          <p><strong>¥0〜</strong>（テンプレそのまま）</p>
+        </article>
+        <article class="card">
+          <h3>Standard</h3>
+          <p>独自ドメイン接続、セクション追加、軽量画像の組み込み。</p>
+          <p><strong>¥—</strong>（要件により見積）</p>
+        </article>
+        <article class="card">
+          <h3>Plus</h3>
+          <p>ブログ/FAQ自動化、OG生成、フォーム外部連携など拡張対応。</p>
+          <p><strong>¥—</strong>（要件により見積）</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Works -->
+    <section id="works" class="section container" aria-labelledby="works-title">
+      <h2 id="works-title">Works</h2>
       <div class="grid works">
-        <article class="work">
-          <h3>プロジェクトA</h3>
-          <p>短い説明文をここに。</p>
+        <article class="work" aria-labelledby="work-a-title">
+          <h3 id="work-a-title">プロジェクトA</h3>
+          <figure>
+            <img src="assets/img/sample-a.jpg" alt="プロジェクトAのスクリーンショット" loading="lazy" />
+            <figcaption>静的サイト＋軽量運用の導入例</figcaption>
+          </figure>
+          <p>1週間で初版公開、以降は文言差し替えのみで運用。</p>
         </article>
-        <article class="work">
-          <h3>プロジェクトB</h3>
-          <p>短い説明文をここに。</p>
+        <article class="work" aria-labelledby="work-b-title">
+          <h3 id="work-b-title">プロジェクトB</h3>
+          <figure>
+            <img src="assets/img/sample-b.jpg" alt="プロジェクトBのスクリーンショット" loading="lazy" />
+            <figcaption>ブログ一覧をトップに集約</figcaption>
+          </figure>
+          <p>カテゴリ分割を避け、単一フィードで更新容易に。</p>
         </article>
-        <article class="work">
-          <h3>プロジェクトC</h3>
-          <p>短い説明文をここに。</p>
+        <article class="work" aria-labelledby="work-c-title">
+          <h3 id="work-c-title">プロジェクトC</h3>
+          <figure>
+            <img src="assets/img/sample-c.jpg" alt="プロジェクトCのスクリーンショット" loading="lazy" />
+            <figcaption>FAQの構造化データを実装</figcaption>
+          </figure>
+          <p>よくある質問をJSON-LDで記述し検索表示を最適化。</p>
         </article>
       </div>
     </section>
 
-    <section id="contact" class="section container">
-      <h2>Contact</h2>
+    <!-- Blog -->
+    <section id="blog" class="section container" aria-labelledby="blog-title">
+      <h2 id="blog-title">Blog</h2>
+      <div class="grid">
+        <article class="card" aria-labelledby="post-1-title">
+          <h3 id="post-1-title">初期デプロイの手順</h3>
+          <p>DNS設定〜公開までの手順を簡潔にまとめたメモ。</p>
+          <p><a href="#" class="btn-secondary">続きを読む</a></p>
+        </article>
+        <article class="card" aria-labelledby="post-2-title">
+          <h3 id="post-2-title">軽量画像の扱い</h3>
+          <p>形式選定・圧縮・読み込み属性で体感速度を改善。</p>
+          <p><a href="#" class="btn-secondary">続きを読む</a></p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section container" aria-labelledby="testimonials-title">
+      <h2 id="testimonials-title">Testimonials</h2>
+      <div class="grid">
+        <blockquote>
+          <p>短期間で公開でき、更新もシンプルで助かる。</p>
+          <cite>— 利用者の声</cite>
+        </blockquote>
+        <blockquote>
+          <p>余計な依存がなく、保守も軽い。</p>
+          <cite>— 利用者の声</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- Roadmap -->
+    <section class="section container" aria-labelledby="roadmap-title">
+      <h2 id="roadmap-title">Roadmap</h2>
+      <ol>
+        <li>初版公開（今週）</li>
+        <li>OG画像自動生成（来週）</li>
+        <li>フォーム外部送信の導入（検討中）</li>
+      </ol>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section container" aria-labelledby="faq-title">
+      <h2 id="faq-title">FAQ</h2>
+      <details>
+        <summary>商用利用は可能？</summary>
+        <p>可能です。ライセンス表記をフッターに残す運用を推奨します。</p>
+      </details>
+      <details>
+        <summary>画像は必須？</summary>
+        <p>不要です。テキストのみでも成立する設計ですが、必要に応じてfigure/imgを追加できます。</p>
+      </details>
+      <details>
+        <summary>外部リンクの安全性は？</summary>
+        <p>target="_blank"の際はrel="noopener"を指定しています。</p>
+      </details>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section container" aria-labelledby="contact-title">
+      <h2 id="contact-title">Contact</h2>
       <ul class="links">
         <li><a href="mailto:hello@example.com">メール</a></li>
         <li><a href="https://github.com/yourname" target="_blank" rel="noopener">GitHub</a></li>
         <li><a href="https://discord.com/users/000000000000000000" target="_blank" rel="noopener">Discord</a></li>
       </ul>
+      <!-- ダミーフォーム（実送信なし） -->
+      <form action="#" method="post" aria-label="簡易お問い合わせフォーム">
+        <label>
+          お名前
+          <input type="text" name="name" required />
+        </label>
+        <label>
+          メール
+          <input type="email" name="email" required />
+        </label>
+        <label>
+          メッセージ
+          <textarea name="message" rows="4" required></textarea>
+        </label>
+        <button class="cta" type="submit">送信（ダミー）</button>
+      </form>
+    </section>
+
+    <!-- Legal -->
+    <section class="section container" aria-labelledby="legal-title">
+      <h2 id="legal-title">Legal</h2>
+      <p><a href="#">プライバシーポリシー（仮）</a> / <a href="#">利用規約（仮）</a></p>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <small>© 2025 SimpleSite</small>
+      <small>© 2025 SimpleSite — MIT</small>
     </div>
   </footer>
-
-  <script defer src="assets/js/app.js"></script>
 </body>
 </html>
