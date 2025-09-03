@@ -1,55 +1,53 @@
-/* =========================
-   Two-tone + Accent, Flat
-   ========================= */
+/* =========================================
+   Flat, No Surface Tone + Primary/Secondary
+   Mobile-first with clear Desktop override
+   ========================================= */
 
-/* Color tokens: two tones + accent */
+/* Design tokens */
 :root {
-  /* Light */
-  --tone-1: hsl(220 15% 98%);   /* background */
-  --tone-2: hsl(220 20% 94%);   /* surface */
-  --text:   hsl(220 15% 14%);
-  --accent: hsl(210 90% 45%);
-  --bg: var(--tone-1);
-  --surface: var(--tone-2);
+  /* Neutral base */
+  --bg: hsl(220 15% 98%);
+  --text: hsl(220 15% 14%);
   --border: hsl(220 15% 85%);
+
+  /* Roles */
+  --primary: hsl(210 90% 45%);     /* main CTA / key link */
+  --secondary: hsl(270 60% 45%);   /* secondary actions / tags */
+
+  /* Back-compat for existing selectors */
+  --accent: var(--primary);
+
   color-scheme: light dark;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    /* Dark */
-    --tone-1: hsl(220 15% 10%);
-    --tone-2: hsl(220 15% 14%);
-    --text:   hsl(0 0% 98%);
-    --accent: hsl(210 100% 66%);
-    --bg: var(--tone-1);
-    --surface: var(--tone-2);
+    --bg: hsl(220 15% 10%);
+    --text: hsl(0 0% 98%);
     --border: hsl(220 10% 26%);
+    --primary: hsl(210 100% 66%);
+    --secondary: hsl(270 70% 65%);
   }
 }
 
 /* Explicit theme override */
 html[data-theme="light"] {
-  --tone-1: hsl(220 15% 98%);
-  --tone-2: hsl(220 20% 94%);
-  --text:   hsl(220 15% 14%);
-  --accent: hsl(210 90% 45%);
-  --bg: var(--tone-1);
-  --surface: var(--tone-2);
+  --bg: hsl(220 15% 98%);
+  --text: hsl(220 15% 14%);
   --border: hsl(220 15% 85%);
+  --primary: hsl(210 90% 45%);
+  --secondary: hsl(270 60% 45%);
 }
 
 html[data-theme="dark"] {
-  --tone-1: hsl(220 15% 10%);
-  --tone-2: hsl(220 15% 14%);
-  --text:   hsl(0 0% 98%);
-  --accent: hsl(210 100% 66%);
-  --bg: var(--tone-1);
-  --surface: var(--tone-2);
+  --bg: hsl(220 15% 10%);
+  --text: hsl(0 0% 98%);
   --border: hsl(220 10% 26%);
+  --primary: hsl(210 100% 66%);
+  --secondary: hsl(270 70% 65%);
 }
 
-/* Reset / base */
+/* Base reset */
 *,
 *::before,
 *::after { box-sizing: border-box; }
@@ -66,103 +64,122 @@ body {
   scroll-behavior: smooth;
 }
 
-.container {
-  width: min(72ch, 92vw);
-  margin-inline: auto;
-  padding: 12px; /* down from 16 */
-}
-
+/* Layout scale (compact) */
+.container { width: min(72ch, 92vw); margin-inline: auto; padding: 12px; }
 h1, h2, h3 { line-height: 1.2; margin: 0 0 10px; }
 p { margin: 0 0 10px; }
 
-a { color: var(--accent); text-decoration: none; }
+a { color: var(--primary); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
+/* Accessibility */
 .skip-link {
   position: absolute; left: -9999px; top: -9999px;
 }
 .skip-link:focus {
   left: 8px; top: 8px;
-  background: var(--surface);
+  background: var(--bg);
   border: 1px solid var(--border);
   padding: 8px 10px;
-  border-radius: 0; /* no rounding */
+  border-radius: 0;
 }
 
 /* Header */
 .site-header {
   border-bottom: 1px solid var(--border);
-  background: var(--surface); /* flat, no translucency */
+  background: var(--bg); /* no surface tone */
   position: sticky; top: 0; z-index: 10;
 }
-
 .site-header .container {
   display: flex; align-items: center; gap: 12px;
 }
-
 .brand { font-weight: 700; }
 
-/* Nav */
-.nav ul {
-  display: flex; gap: 12px; list-style: none; margin: 0; padding: 0;
+/* Nav (mobile default: hidden menu) */
+.nav {
+  position: absolute; right: 12px; top: 56px;
+  background: var(--bg); /* same as page */
+  border: 1px solid var(--border);
+  padding: 8px;
+  min-width: 180px;
+  display: none;
 }
+.nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.nav[data-open="true"] { display: block; }
 
-/* Actions */
+/* Header actions */
 .actions { margin-left: auto; display: flex; gap: 8px; }
 .icon-btn {
   font: inherit; line-height: 1;
-  background: var(--surface);
+  background: var(--bg);
   border: 1px solid var(--border);
-  padding: 6px 10px; /* down from 8x10 */
-  border-radius: 0; /* no rounding */
+  padding: 6px 10px;
+  border-radius: 0;
   cursor: pointer;
 }
-.icon-btn:focus-visible { outline: 2px solid var(--accent); }
+.icon-btn:focus-visible { outline: 2px solid var(--primary); }
 
 /* Hero */
-.hero { padding-block: 32px; } /* down from 48px */
+.hero { padding-block: 32px; }
 
+/* Buttons (role-based) */
 .cta {
-  display: inline-block; background: var(--accent); color: white;
-  padding: 8px 12px; /* down from 10x14 */
-  border-radius: 0; /* no rounding */
-  font-weight: 600;
+  display: inline-block; background: var(--primary); color: white;
+  padding: 8px 12px; border-radius: 0; font-weight: 600;
 }
-.cta:hover { filter: brightness(0.95); text-decoration: none; }
+.btn-secondary {
+  display: inline-block; background: var(--secondary); color: white;
+  padding: 8px 12px; border-radius: 0; font-weight: 600;
+}
 
 /* Sections */
-.section { padding-block: 20px; border-top: 1px solid var(--border); } /* down from 32px */
+.section { padding-block: 20px; border-top: 1px solid var(--border); }
 
-.grid { display: grid; gap: 12px; } /* down from 16px */
+/* Grids */
+.grid { display: grid; gap: 12px; }
+.cards, .works { grid-template-columns: 1fr; } /* mobile default: single column */
 
-.cards { grid-template-columns: repeat(3, minmax(0,1fr)); }
-.works { grid-template-columns: repeat(3, minmax(0,1fr)); }
-
+/* Cards/Works: no surface backing */
 .card, .work {
-  background: var(--surface);
+  background: transparent; /* no surface tone */
   border: 1px solid var(--border);
-  border-radius: 0; /* no rounding */
-  padding: 12px; /* down from 16px */
+  border-radius: 0;
+  padding: 12px;
+}
+
+/* Decorative accents */
+.section h2 {
+  border-left: 4px solid var(--secondary);
+  padding-left: 8px;
 }
 
 /* Footer */
 .site-footer {
   border-top: 1px solid var(--border);
-  padding: 20px 0; /* down from 24px */
+  padding: 20px 0;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .cards, .works { grid-template-columns: 1fr; }
+/* =========================
+   Desktop design (>=769px)
+   ========================= */
+@media (min-width: 769px) {
+  /* Layout breathing on desktop (still compact) */
+  .container { width: min(84ch, 88vw); padding: 16px; }
+
+  /* Header: inline nav, no overlay menu */
   .nav {
-    position: absolute; right: 12px; top: 56px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 0; /* no rounding */
-    padding: 8px;
-    min-width: 180px;
-    display: none;
+    position: static; display: block; border: none; padding: 0; min-width: 0;
   }
-  .nav ul { flex-direction: column; }
-  .nav[data-open="true"] { display: block; }
+  .nav ul { flex-direction: row; gap: 12px; }
+  #menu-toggle { display: none; }
+
+  /* Grids: multi-column on desktop */
+  .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .works { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+  /* Sections: slightly more space */
+  .section { padding-block: 24px; }
+
+  /* Hero: slightly expanded */
+  .hero { padding-block: 40px; }
 }
